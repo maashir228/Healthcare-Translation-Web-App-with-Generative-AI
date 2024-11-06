@@ -1,12 +1,16 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
+from dotenv import load_dotenv
+import os
 
+# Load environment variables from .env file
+load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
 # Define the API key
-api_key = "AIzaSyByp65G9QyucHrnByRlPSMFUUpU539dLvk"
+api_key = os.getenv("API_KEY")
 genai.configure(api_key=api_key)
 
 @app.route('/translate', methods=['POST'])
